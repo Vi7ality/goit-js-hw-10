@@ -2,7 +2,7 @@ export function createCountryListMarkup(data) {
   return data
     .map(({ name, flags }) => {
       return `<li style="display: flex; align-items: center;">
-    <img src="${flags.png}" alt="${name.official} flag" width="20">
+    <img src="${flags.svg}" alt="${name.official} flag" width="20">
       <p>${name.official}</p></li>`;
     })
     .join('');
@@ -12,7 +12,7 @@ export function createCountryInfoMarkup(data) {
   const languages = Object.values(data[0].languages).join(', ');
   return `      
 <div style="display: flex; align-items: center;">
-        <img src="${data[0].flags.png}" alt="${data[0].name.official} flag" width="20" height="100%"/>
+        <img src="${data[0].flags.svg}" alt="${data[0].name.official} flag" width="20" height="100%"/>
         <h2>${data[0].name.official}</h2>
       </div>
 
