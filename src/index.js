@@ -14,9 +14,11 @@ refs.searchBox.addEventListener(
 );
 
 function onInputSearch(event) {
-    let name = event.target.value;
-    const { countryList, countryInfo } = refs;
+  let name = event.target.value.trim();
+  const { countryList, countryInfo } = refs;
   if (name === '') {
+    clearMarkup(countryList);
+    clearMarkup(countryInfo);
     return;
   }
 
@@ -32,18 +34,17 @@ function onInputSearch(event) {
         Notiflix.Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
-          clearMarkup(countryList);
-          clearMarkup(countryInfo);
+
         return;
       } else if (data.length >= 2 && data.length <= 10) {
         const markup = createCountryListMarkup(data);
         countryList.innerHTML = markup;
-          clearMarkup(countryInfo);
+        clearMarkup(countryInfo);
         return;
       } else {
         const markup = createCountryInfoMarkup(data);
         countryInfo.innerHTML = markup;
-          clearMarkup(countryList);
+        clearMarkup(countryList);
       }
     })
     .catch(error => {
@@ -53,5 +54,5 @@ function onInputSearch(event) {
 }
 
 function clearMarkup(direction) {
-    direction.innerHTML = '';
+  direction.innerHTML = '';
 }
